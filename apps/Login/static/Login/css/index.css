@@ -1,0 +1,21 @@
+#registration_form {
+	display:none;
+}
+
+.off_tab {
+	cursor: pointer;
+	box-shadow: 0px 1px;
+	background-color:#80808021;
+}
+
+.active_tab {
+	border-bottom:none !important;
+}
+
+.form_box {
+	border-top:none !important;
+}
+
+.bg {
+	background: url('{% static 'Login/mountain_town.jpg' %}');
+}

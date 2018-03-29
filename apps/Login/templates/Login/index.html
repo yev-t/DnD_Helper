@@ -1,9 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>D&D Helper</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	{% load staticfiles %}
+	<script rel="stylesheet" type="text/javascript" src="{% static 'Login/js/index.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'Login/css/index.css' %}">
 </head>
 <body>
-
+	<div class="container">
+		<div class="jumbotron rounded jumbotron-fluid text-primary text-center"><h1>D&D Helper</h1></div>
+		{% if messages %}
+			<ul class="messages">
+			    {% for message in messages %}
+			    	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			    {% endfor %}
+			</ul>
+		{% endif %}
+		<div id="log_in_form">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="active_tab col-md-3 border border-secondary rounded-top text-center"><h4>Log in</h4></div>
+				<div id="registration_button" class="off_tab col-md-3 border border-secondary rounded-top text-center"><h4>Register</h4></div>
+				<div class="col-md-3"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="form_box pt-3 col-md-6 border border-secondary rounded-bottom">
+					<form action="{% url 'login_user' %}" method="POST">
+						{% csrf_token %}
+						<div class="form-group">
+				      		<label for="username">Username:</label>
+				      		<input type="text" class="form-control" id="username" placeholder="Username" name="username">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="password">Password:</label>
+				      		<input type="password" class="form-control" id="log_in_password" placeholder="Password" name="password">
+				    	</div>
+				    	<button type="submit" class="btn btn-primary">Log in</button>
+					</form><br>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+		</div>
+		<div id="registration_form">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div id="log_in_button" class="off_tab col-md-3 border border-secondary rounded-top text-center"><h4>Log in</h4></div>
+				<div class="active_tab col-md-3 border border-secondary rounded-top text-center"><h4>Register</h4></div>
+				<div class="col-md-3"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="form_box pt-3 col-md-6 border border-secondary rounded-bottom">
+					<form action="{% url 'register_user' %}" method="POST">
+			  			{% csrf_token %}
+				    	<div class="form-group">
+				      		<label for="user_name">Select an username:</label>
+				      		<input type="text" class="form-control" id="username" placeholder="Username" name="username">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="user_password">Select a Password:</label>
+				      		<input type="password" class="form-control" id="registration_password" placeholder="Password" name="password">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="confirm_password">Confirm your password:</label>
+				      		<input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password">
+				    	</div>
+					    <div class="form-group">
+				      		<label for="first_name">Enter your name:</label>
+				      		<input type="text" class="form-control" id="name" placeholder="Full name" name="name">
+				    	</div>
+						<div class="form-group">
+				      		<label for="date_of_birth">Enter your Date of birth:</label>
+				      		<input type="date" class="form-control" id="date_of_birth" placeholder="Date of birth" name="date_of_birth">
+				    	</div>
+				    	<div class="form-group">
+				      		<label for="email">Enter your e-mail:</label>
+				      		<input type="text" class="form-control" id="email" placeholder="E-mail" name="email">
+				    	</div>
+				    	<button type="submit" class="btn btn-primary">Register</button>
+			  		</form><br>
+			  	</div>
+			  	<div class="col-md-3"></div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

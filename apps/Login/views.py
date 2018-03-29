@@ -6,10 +6,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 def index(request):
-	pass  #login page
-
-def registration(request):
-	pass
+	return render(request, 'Login/index.html')
 
 def register_user(request):
 	pass
