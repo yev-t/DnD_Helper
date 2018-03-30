@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<!-- Page title and dependencies for bootstrap, javascript, jQuery-->
+<head>
+	<title>D&D Helper Home</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	{% load static %}
+	<div class="container">
+		<div class="jumbotron rounded jumbotron-fluid text-primary text-center"><h1>Home Page</h1></div>
+		<a href="{% url 'logout' %}">Logout</a>
+		{% for user in request.session.all_users %}
+			<br><h4>User: {{ user.name }}<form action="{% url 'delete' %}" method="POST">{% csrf_token %}<input type="hidden" name="user_id" value="{{ user.user_id }}"><input type="submit" name="submit" value="Delete"></form></h4>
+		{% endfor %}
+	</div>
+</body>
+</html>

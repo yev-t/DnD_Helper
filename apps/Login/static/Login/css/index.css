@@ -1,4 +1,4 @@
-#registration_form {
+.inactive_form {
 	display:none;
 }
 
@@ -18,4 +18,8 @@
 
 .bg {
 	background: url('{% static 'Login/mountain_town.jpg' %}');
+}
+
+.error {
+	color:red;
 }

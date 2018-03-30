@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- Page title and dependencies for bootstrap, javascript, jQuery-->
 <head>
 	<title>D&D Helper</title>
 	<meta charset="utf-8">
@@ -15,20 +16,28 @@
 <body>
 	<div class="container">
 		<div class="jumbotron rounded jumbotron-fluid text-primary text-center"><h1>D&D Helper</h1></div>
+		<!-- Validation message display -->
 		{% if messages %}
 			<ul class="messages">
 			    {% for message in messages %}
-			    	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+				    <div class="row">
+						<div class="col-md-3"></div>
+					    <li{% if message.tags %} class="col-md-6 {{ message.tags }}"{% endif %}>{{ message }}</li>
+					    <div class="col-md-3"></div>
+					</div>
 			    {% endfor %}
-			</ul>
+			</ul>  
 		{% endif %}
-		<div id="log_in_form">
+		<!-- Login area -->
+		<div class="{{ request.session.form.0 }}_form" id="log_in_form">
+			<!-- Tabs at top of login form -->
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="active_tab col-md-3 border border-secondary rounded-top text-center"><h4>Log in</h4></div>
 				<div id="registration_button" class="off_tab col-md-3 border border-secondary rounded-top text-center"><h4>Register</h4></div>
 				<div class="col-md-3"></div>
 			</div>
+			<!-- Login form -->
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="form_box pt-3 col-md-6 border border-secondary rounded-bottom">
@@ -48,13 +57,16 @@
 				<div class="col-md-3"></div>
 			</div>
 		</div>
-		<div id="registration_form">
+		<!-- Registration area -->
+		<div class="{{ request.session.form.1 }}_form" id="registration_form">
+			<!-- Tabs at top of registration form -->
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div id="log_in_button" class="off_tab col-md-3 border border-secondary rounded-top text-center"><h4>Log in</h4></div>
 				<div class="active_tab col-md-3 border border-secondary rounded-top text-center"><h4>Register</h4></div>
 				<div class="col-md-3"></div>
 			</div>
+			<!-- Registration form -->
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="form_box pt-3 col-md-6 border border-secondary rounded-bottom">
@@ -73,12 +85,8 @@
 				      		<input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password">
 				    	</div>
 					    <div class="form-group">
-				      		<label for="first_name">Enter your name:</label>
+				      		<label for="first_name">Enter your full name:</label>
 				      		<input type="text" class="form-control" id="name" placeholder="Full name" name="name">
-				    	</div>
-						<div class="form-group">
-				      		<label for="date_of_birth">Enter your Date of birth:</label>
-				      		<input type="date" class="form-control" id="date_of_birth" placeholder="Date of birth" name="date_of_birth">
 				    	</div>
 				    	<div class="form-group">
 				      		<label for="email">Enter your e-mail:</label>
